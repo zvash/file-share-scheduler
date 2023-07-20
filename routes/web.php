@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use \App\Http\Controllers\CustomerController;
 use \App\Http\Controllers\DashboardController;
+use \App\Http\Controllers\TutorialsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function () {
+Route::get('/tutorials/{token}', [TutorialsController::class, 'visit']);
 
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/customers', [CustomerController::class, 'store'])->name('customers.create');
 

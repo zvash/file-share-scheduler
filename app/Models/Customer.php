@@ -28,6 +28,10 @@ class Customer extends Model
         'full_url',
     ];
 
+    protected $casts = [
+        'valid_until' => 'datetime',
+    ];
+
     public static function store($data)
     {
         return Customer::query()->create([
@@ -42,12 +46,12 @@ class Customer extends Model
         return Customer::query()->where('is_active', true)
             ->where(function ($query) {
                 return $query->whereNull('valid_until')
-                    ->orWhere('valid_until', '<=', Carbon::now());
+                    ->orWhere('valid_until', '>=', Carbon::now());
             })->orderBy('created_at', 'DESC')
             ->get();
     }
 
     public function getFullUrlAttribute() {
-        return rtrim(config('app.url'), '/') . '/tutorials/' . $this->token;
+        return '/tutorials/' . $this->token;
     }
 }
