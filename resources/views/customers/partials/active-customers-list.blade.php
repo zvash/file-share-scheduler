@@ -15,6 +15,7 @@
             <th>Hours</th>
             <th>Link</th>
             <th>Visited</th>
+            <th>Valid Until</th>
         </x-slot>
         @foreach($activeCustomers as $customer)
             <tr>
@@ -28,6 +29,7 @@
                     @endif
                 </td>
                 <td>{{ $customer['is_visited'] ? "✅" : "❌" }}</td>
+                <td>{{ $customer['valid_until_string'] }}</td>
             </tr>
         @endforeach
     </x-bladewind.table>

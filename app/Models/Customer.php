@@ -26,6 +26,7 @@ class Customer extends Model
 
     protected $appends = [
         'full_url',
+        'valid_until_string',
     ];
 
     protected $casts = [
@@ -51,7 +52,19 @@ class Customer extends Model
             ->get();
     }
 
-    public function getFullUrlAttribute() {
+    public function getFullUrlAttribute()
+    {
         return '/tutorials/' . $this->token;
+    }
+
+    public function getValidUntilStringAttribute()
+    {
+        if (!$this->valid_until) {
+            return "{$this->hours} hours after first access.";
+        }
+        if ($this->valid_until->timestamp >= Carbon::now()->timestamp) {
+            return $this->valid_until->diffForHumans(Carbon::now()) . ' now.';
+        }
+        return 'Expired';
     }
 }
