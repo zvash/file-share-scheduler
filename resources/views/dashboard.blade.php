@@ -12,6 +12,16 @@
                     @include('customers.partials.add-customer-form')
                 </div>
             </div>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @include('customers.partials.active-customers-list')
+                </div>
+            </div>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @include('customers.partials.inactive-customers-list')
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>
