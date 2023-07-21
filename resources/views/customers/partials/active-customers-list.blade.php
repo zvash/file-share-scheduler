@@ -23,7 +23,7 @@
                 <td>{{ $customer['hours'] }}</td>
                 <td>
                     @if($customer['full_url'])
-                        <a class="underline" href="{{ $customer['full_url'] }}">Temporary URL</a>
+                        <a class="underline" target="_blank" href="{{ $customer['full_url'] }}">Temporary URL</a>
                     @else
                         -
                     @endif
