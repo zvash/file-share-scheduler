@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Active Customers') }}
+            {{ __('Expired Access Customer') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('List of all active customers') }}
+            {{ __('List of all expired access customers) }}
         </p>
     </header>
 
