@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('List of all expired access customers) }}
+            {{ __('List of all expired access customers') }}
         </p>
     </header>
 
