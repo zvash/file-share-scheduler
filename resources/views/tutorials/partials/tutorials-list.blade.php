@@ -14,7 +14,7 @@
     </header>
     </p>
     <br>
-    <div class="flex flex-wrap p-2">
+    <div class="flex flex-wrap p-2 flex-row justify-items-center">
         @foreach($tutorials as $tutorial)
             <a target="_blank" href="{{ $tutorial['url'] }}" class="flex">
                 <x-bladewind.card class="!bg-gray-200 p-1 mb-2 ml-1 mr-1">
