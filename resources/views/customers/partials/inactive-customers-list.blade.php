@@ -1,29 +1,34 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Expired Access Customers') }}
+            {{ __('Active Customers') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('List of all customers with expired access') }}
+            {{ __('List of all active customers') }}
         </p>
     </header>
 
     <x-bladewind.table divider="thin">
         <x-slot name="header">
             <th>Name</th>
-            <th>Department</th>
-            <th>Email</th>
+            <th>Hours</th>
+            <th>Link</th>
+            <th>Was Valid Until</th>
         </x-slot>
-        <tr>
-            <td>Alfred Rowe</td>
-            <td>Outsourcing</td>
-            <td>alfred@therowe.com</td>
-        </tr>
-        <tr>
-            <td>Michael K. Ocansey</td>
-            <td>Tech</td>
-            <td>kabutey@gmail.com</td>
-        </tr>
+        @foreach($inactiveCustomers as $customer)
+            <tr>
+                <td>{{ $customer['name'] }}</td>
+                <td>{{ $customer['hours'] }}</td>
+                <td>
+                    @if($customer['full_url'])
+                        <a class="underline" target="_blank" href="{{ $customer['full_url'] }}">Temporary URL</a>
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>{{ $customer['valid_until'] }}</td>
+            </tr>
+        @endforeach
     </x-bladewind.table>
 </section>

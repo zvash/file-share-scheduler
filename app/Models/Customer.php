@@ -30,7 +30,7 @@ class Customer extends Model
     ];
 
     protected $casts = [
-        'valid_until' => 'datetime',
+        'valid_until' => 'datetime:Y-m-d H:i:s',
     ];
 
     public static function store($data)
@@ -48,6 +48,16 @@ class Customer extends Model
             ->where(function ($query) {
                 return $query->whereNull('valid_until')
                     ->orWhere('valid_until', '>=', Carbon::now());
+            })->orderBy('created_at', 'DESC')
+            ->get();
+    }
+
+    public static function getInActives()
+    {
+        return Customer::query()->where('is_active', false)
+            ->orWhere(function ($query) {
+                return $query->whereNotNull('valid_until')
+                    ->where('valid_until', '<', Carbon::now());
             })->orderBy('created_at', 'DESC')
             ->get();
     }

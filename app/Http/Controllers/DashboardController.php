@@ -10,6 +10,9 @@ class DashboardController extends Controller
     public function index()
     {
         $activeCustomers = Customer::getActives();
-        return view('dashboard')->with('activeCustomers', $activeCustomers->toArray());
+        $inactiveCustomers = Customer::getInActives();
+        return view('dashboard')
+            ->with('activeCustomers', $activeCustomers->toArray())
+            ->with('inactiveCustomers', $inactiveCustomers->toArray());
     }
 }
