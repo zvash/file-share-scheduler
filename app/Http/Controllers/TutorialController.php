@@ -7,6 +7,7 @@ use App\Exceptions\TutorialsAccessDeniedException;
 use App\Http\Requests\StoreTutorialRequest;
 use App\Models\Tutorial;
 use App\Repositories\CustomerRepository;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class TutorialController extends Controller
@@ -26,7 +27,9 @@ class TutorialController extends Controller
             foreach ($tutorials as &$tutorial) {
                 $tutorial['url'] = "/customers/{$token}{$tutorial['url']}";
             }
-            return view('layouts.tutorials')->with('tutorials', $tutorials);
+            return view('layouts.tutorials')
+                ->with('tutorials', $tutorials)
+                ->with('remainingTime', $customer->valid_until_string);
         } catch (CustomerNotFoundException $exception) {
             return abort(404);
         } catch (TutorialsAccessDeniedException $exception) {

@@ -63,7 +63,7 @@ class Customer extends Model
             return "{$this->hours} hours after first access.";
         }
         if ($this->valid_until->timestamp >= Carbon::now()->timestamp) {
-            return $this->valid_until->diffForHumans(Carbon::now()) . ' now.';
+            return $this->valid_until->diffForHumans(Carbon::now()) . ' now ';
         }
         return 'Expired';
     }
